@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  clickhouse:
+    image: yandex/clickhouse-server:latest
+    container_name: clickhouse
+    environment:
+      CLICKHOUSE_USER: admin
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+      CLICKHOUSE_PASSWORD: password
+    ports:
+      - "8123:8123" # HTTP-интерфейс
+      - "9000:9000" # TCP-интерфейс для клиентов
+    # volumes:
+    #   - ./data:/var/lib/clickhouse
+    #   - ./config:/etc/clickhouse-server
+    restart: unless-stopped
